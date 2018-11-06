@@ -62,15 +62,15 @@ G28                 ; Home all axis
 M83                 ; Extruder to relative mode
 G1 F4800 X5 Y10     ; move to purge position
 G1 F2400 Z25.4      ; move the platform down 25.4mm
-G1 F600 E20         ; undo retraction  
+G1 F600 E20         ; undo retraction
+G1 F2400 Y25        ; move away 
 G1 F60 E20          ; additional priming
 G1 F3200 Z0.30 Y50  ; wipe start position
 G1 F3200 Y150 Z0.10 ; wipe end
-G1 F4800 Z0.30      ; more clearance
+G1 F3200 Z0.30      ; more clearance
 M82                 ; Extruder to absolute mode
 G92 E0 	            ; zero the extruder
-
-
+M300 S800 P200      ; Beep
 
 
 
