@@ -1,0 +1,76 @@
+-- MATERIALS
+
+Makespace Generic PLA
+	- diameter 3mm
+	- extruder 210C
+	- build plate 60C
+
+
+Makespace Generic ABS
+	- diameter 3mm
+	- extruder 230C
+		o first layer 220C
+	- build plate 80C
+		o first layer 100C
+
+
+
+
+
+-- MACHINE
+
+;;; Cura/Marlin default
+
+G21 ;metric values
+G90 ;absolute positioning
+M82 ;set extruder to absolute mode
+M107 ;start with the fan off
+G28 Z0 ;move Z to bottom endstops
+G28 X0 Y0 ;move X/Y to endstops
+G1 X15 Y0 F4000 ;move X/Y to front of printer
+G1 Z15.0 F9000 ;move the platform to 15mm
+G92 E0 ;zero the extruded length
+G1 F200 E10 ;extrude 10 mm of feed stock
+G92 E0 ;zero the extruded length again
+G1 F9000
+;Put printing message on LCD screen
+M117 Printing...
+
+
+M104 S0 ;extruder heater off
+M140 S0 ;heated bed heater off (if you have it)
+G91 ;relative positioning
+G1 E-1 F300  ;retract the filament a bit before lifting the nozzle, to release some of the pressure
+G1 Z+0.5 E-5 X-20 Y-20 F9000 ;move Z up a bit and retract filament even more
+G28 X0 Y0 ;move X/Y to min endstops, so the head is out of the way
+M84 ;steppers off
+G90 ;absolute positioning
+;Version _2.6 of the firmware can abort the print too early if the file ends
+;too soon. However if the file hasn't ended yet because there are comments at
+;the end of the file, it won't abort yet. Therefore we have to put at least 512
+;bytes at the end of the g-code so that the file is not yet finished by the
+;time that the motion planner gets flushed. With firmware version _3.3 this
+;should be fixed, so this comment wouldn't be necessary any more. Now we have
+;to pad this text to make precisely 512 bytes.
+
+
+
+;; PMa custom start g-code
+G21                 ; Metric values
+G90                 ; Absolute positioning
+G28                 ; Home all axis
+M83                 ; Extruder to relative mode
+G1 F4800 X5 Y10     ; move to purge position
+G1 F2400 Z25.4      ; move the platform down 25.4mm
+G1 F600 E20         ; undo retraction  
+G1 F60 E20          ; additional priming
+G1 F3200 Z0.30 Y50  ; wipe start position
+G1 F3200 Y150 Z0.10 ; wipe end
+G1 F4800 Z0.30      ; more clearance
+M82                 ; Extruder to absolute mode
+G92 E0 	            ; zero the extruder
+
+
+
+
+
