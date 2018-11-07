@@ -60,17 +60,42 @@ G21                 ; Metric values
 G90                 ; Absolute positioning
 G28                 ; Home all axis
 M83                 ; Extruder to relative mode
-G1 F4800 X5 Y10     ; move to purge position
-G1 F2400 Z25.4      ; move the platform down 25.4mm
-G1 F600 E20         ; undo retraction
-G1 F2400 Y25        ; move away 
-G1 F60 E20          ; additional priming
-G1 F3200 Z0.30 Y50  ; wipe start position
-G1 F3200 Y150 Z0.10 ; wipe end
-G1 F3200 Z0.30      ; more clearance
+G1 F4800 X5 Y10     ; Move to purge position
+G1 F2400 Z25.4      ; Move the platform down 25.4mm
+G1 F45 E20          ; Safe undo retraction, 20mm @ 0.75mm/s
+G1 F2400 Y25        ; Move away
+G1 F45 E22          ; Additional priming, 150mm3 @ 0.75mm/s (~5mm3/s)
+G1 F3200 Z0.30 Y50  ; Wipe start position
+G1 F3200 Y150 Z0.10 ; Wipe end
+G1 F3200 Z0.30      ; More clearance
 M82                 ; Extruder to absolute mode
-G92 E0 	            ; zero the extruder
-M300 S800 P200      ; Beep
+G92 E0 	            ; Zero the extruder
+M300 S1000 P50      ; Beep
 
+
+;; PMa custom end g-code
+M82                 ; Absolute extrusion mode
+G90                 ; Absolute positioning
+G28                 ; Home all axis
+M84                 ; Steppers off
+M107                ; Fans off
+M104 S0             ; Extruder heater off
+M140 S0             ; Bed heater off
+
+
+;; Nokia tune
+M300 S6644 P150
+M300 S5919 P150
+M300 S1864 P300
+M300 S1864 P300
+M300 S3520 P150
+M300 S4978 P150
+M300 S2959 P300
+M300 S3322 P300
+M300 S4978 P150
+M300 S4434 P150
+M300 S1760 P300
+M300 S3322 P300
+M300 S4434 P300
 
 
