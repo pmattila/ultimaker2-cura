@@ -54,12 +54,13 @@ G90 ;absolute positioning
 ;to pad this text to make precisely 512 bytes.
 
 
-
 ;; PMa custom start g-code
 G21                 ; Metric values
 G90                 ; Absolute positioning
 G28                 ; Home all axis
 M83                 ; Extruder to relative mode
+M220 S100           ; Reset print speed to 100%
+M221 S100           ; Reset material flow to 100%
 G1 F4800 X5 Y10     ; Move to purge position
 G1 F2400 Z25.4      ; Move the platform down 25.4mm
 G1 F90 E20          ; Safe undo retraction, 20mm @ 1.50mm/s
@@ -69,8 +70,7 @@ G1 F3200 Z0.30 Y50  ; Wipe start position
 G1 F3200 Y150 Z0.10 ; Wipe end
 G1 F3200 Z0.30      ; More clearance
 M82                 ; Extruder to absolute mode
-G92 E0 	            ; Zero the extruder
-
+G92 E0              ; Zero the extruder
 
 ;; PMa custom end g-code
 M82                 ; Absolute extrusion mode
@@ -80,6 +80,8 @@ M84                 ; Steppers off
 M107                ; Fans off
 M104 S0             ; Extruder heater off
 M140 S0             ; Bed heater off
+M220 S100           ; Reset print speed to 100%
+M221 S100           ; Reset material flow to 100%
 
 
 ;; Nokia tune
