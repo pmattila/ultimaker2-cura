@@ -3,10 +3,10 @@
 ##
 
 # Full version
-VERSION ?= 3.5.1
+VERSION ?= 3.6.0
 
 # Major version
-MAJOR ?= 3.5
+MAJOR ?= 3.6
 
 # Application location
 APPPATH ?= /Applications/Ultimaker Cura.app/Contents/Resources/resources
@@ -65,17 +65,20 @@ INSTALLS := \
 install: $(INSTALLS)
 
 material_install:
-	@for FILE in materials/* ; do \
+	@shopt -s nullglob; \
+	for FILE in materials/* ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/$${FILE}" ; \
 	done
 
 quality_install:
-	@for FILE in quality/* ; do \
+	@shopt -s nullglob; \
+	for FILE in quality/* ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/$${FILE}" ; \
 	done
 
 profile_install:
-	@for FILE in quality_changes/* ; do \
+	@shopt -s nullglob; \
+	for FILE in quality_changes/* ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/$${FILE}" ; \
 	done
 
