@@ -22,7 +22,7 @@ APP_DIRS := #
 CFG_DIRS := \
 	materials		\
 	quality			\
-	quality_changes		\
+	profiles		\
 	settings		\
 
 
@@ -78,7 +78,7 @@ quality_install:
 	done
 
 profile_install:
-	@shopt -s nullglob; cd quality_changes && \
+	@shopt -s nullglob; cd profiles && \
 	for FILE in * ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/quality_changes/$${FILE}" ; \
 	done
