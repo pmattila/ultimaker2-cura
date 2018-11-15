@@ -9,7 +9,7 @@
     </name>
     <description>Makespace no-name cream-white ABS filament, 220-230C written on the spool.</description>
     <adhesion_info>Use glue stick or ABS goo.</adhesion_info>
-    <color_code>#e0e0e0</color_code>
+    <color_code>#f7b500</color_code>
     <version>1</version>
     <GUID>983c35e5-10ab-4a55-8be8-85b585f59cb9</GUID>
     <definition>fdmprinter</definition>
