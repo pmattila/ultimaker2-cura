@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<fdmmaterial version="1.3" xmlns="http://www.ultimaker.com/material" xmlns:cura="http://www.ultimaker.com/cura">
+  <metadata>
+    <name>
+      <brand>eSun</brand>
+      <material>ABS</material>
+      <color>Generic</color>
+      <label>eSun Generic ABS</label>
+    </name>
+    <compatible>True</compatible>
+    <adhesion_info>Use glue stick or ABS juice.</adhesion_info>
+    <definition>fdmprinter</definition>
+    <description>eSun generic ABS filament.</description>
+    <color_code>#ffe30e</color_code>
+    <GUID>f1960dd8-487c-4297-9eff-edfa4baa6a64</GUID>
+    <version>1</version>
+  </metadata>
+  <properties>
+    <density>1.10</density>
+    <diameter>2.85</diameter>
+  </properties>
+  <settings>
+    <setting key="print temperature">245</setting>
+    <setting key="heated bed temperature">90</setting>
+    <setting key="standby temperature">200</setting>
+    <!-- setting key="print cooling">20</setting -->
+    <!-- setting key="retraction amount">6.5</setting -->
+    <!-- setting key="retraction speed">25</setting -->
+    <setting key="shrinkage percentage">0.9</setting>
+    <setting key="surface energy">70</setting>
+    <setting key="adhesion tendency">0</setting>
+  </settings>
+</fdmmaterial>
