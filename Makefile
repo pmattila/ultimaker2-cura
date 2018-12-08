@@ -67,25 +67,25 @@ install: $(INSTALLS)
 
 material_install:
 	@shopt -s nullglob; cd materials && \
-	for FILE in * ; do \
+	for FILE in *.fdm_material ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/materials/$${FILE}" ; \
 	done
 
 quality_install:
 	@shopt -s nullglob; cd quality && \
-	for FILE in * ; do \
+	for FILE in *.cfg ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
 	done
 
 profile_install:
 	@shopt -s nullglob; cd profiles && \
-	for FILE in * ; do \
+	for FILE in *.cfg ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/quality_changes/$${FILE}" ; \
 	done
 
 setting_install:
 	@shopt -s nullglob; cd settings && \
-	for FILE in * ; do \
+	for FILE in *.cfg ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/setting_visibility/$${FILE}" ; \
 	done
 
