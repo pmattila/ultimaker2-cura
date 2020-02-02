@@ -1,0 +1,92 @@
+{
+    "version": 2,
+    "name": "Ultimaker 2",
+    "inherits": "ultimaker",
+    "metadata": {
+        "visible": true,
+        "author": "Ultimaker",
+        "manufacturer": "Ultimaker B.V.",
+        "weight": 3,
+        "file_formats": "text/x-gcode",
+        "platform": "ultimaker2_platform.obj",
+        "platform_texture": "Ultimaker2backplate.png",
+        "platform_offset": [9, 0, 0],
+        "has_materials": false,
+        "has_machine_quality": true,
+        "preferred_variant_name": "0.4 mm",
+        "first_start_actions": ["UM2UpgradeSelection"],
+        "supported_actions":["UM2UpgradeSelection"],
+        "machine_extruder_trains":
+        {
+            "0": "ultimaker2_extruder_0"
+        },
+        "firmware_file": "MarlinUltimaker2.hex"
+    },
+    "overrides": {
+        "machine_name": { "default_value": "Ultimaker 2" },
+        "machine_width": {
+            "default_value": 223
+        },
+        "machine_depth": {
+            "default_value": 223
+        },
+        "machine_height": {
+            "default_value": 205
+        },
+        "machine_heated_bed": {
+            "default_value": true
+        },
+        "machine_head_with_fans_polygon":
+        {
+            "default_value": [
+                [ -42, 12 ],
+                [ -42, -32 ],
+                [ 62, 12 ],
+                [ 62, -32 ]
+            ]
+        },
+        "machine_center_is_zero": {
+            "default_value": false
+        },
+        "gantry_height": {
+            "value": "48"
+        },
+        "machine_use_extruder_offset_to_offset_coords": {
+            "default_value": true
+        },
+        "machine_gcode_flavor": {
+            "default_value": "UltiGCode"
+        },
+        "machine_disallowed_areas": {
+            "default_value": [
+              [[-115,  112.5], [ -82,  112.5], [ -84,  102.5], [-115,  102.5]],
+              [[ 115,  112.5], [ 115,  102.5], [ 110,  102.5], [ 108,  112.5]],
+              [[-115, -112.5], [-115, -104.5], [ -84, -104.5], [ -82, -112.5]],
+              [[ 115, -112.5], [ 108, -112.5], [ 110, -104.5], [ 115, -104.5]]
+        ]},
+        "machine_nozzle_tip_outer_diameter": {
+            "default_value": 1
+        },
+        "machine_nozzle_head_distance": {
+            "default_value": 3
+        },
+        "machine_nozzle_expansion_angle": {
+            "default_value": 45
+        },
+        "machine_max_feedrate_x": {
+            "default_value": 300
+        },
+        "machine_max_feedrate_y": {
+            "default_value": 300
+        },
+        "machine_max_feedrate_z": {
+            "default_value": 40
+        },
+        "machine_acceleration": {
+            "default_value": 3000
+        },
+        "machine_nozzle_temp_enabled": {
+            "default_value": false
+        }
+    }
+}

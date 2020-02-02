@@ -3,13 +3,13 @@
 ##
 
 # Full version
-VERSION ?= 3.6.0
+VERSION ?= 4.3.0
 
 # Major version
-MAJOR ?= 3.6
+MAJOR ?= 4.3
 
 # Application location
-APPPATH ?= /Applications/Ultimaker Cura.app/Contents/Resources/resources
+APPPATH ?= /Applications/Ultimaker Cura 4.3.app/Contents/Resources/resources
 
 # Config files
 CFGPATH ?= $(HOME)/Library/Application Support/cura/$(MAJOR)
@@ -20,9 +20,11 @@ CFGPATH ?= $(HOME)/Library/Application Support/cura/$(MAJOR)
 APP_DIRS := #
 
 CFG_DIRS := \
+	definitions		\
+	extruders		\
+	variants		\
 	materials		\
 	quality			\
-	profiles		\
 	settings		\
 
 
@@ -56,14 +58,47 @@ cfgdiff:
 ## Install rules
 
 INSTALLS := \
-	material_install	\
-	quality_install		\
-	profile_install		\
-	setting_install		\
+	fix_install			\
+	definition_install		\
+	variant_install			\
+	extruder_install		\
+	setting_install			\
+	machine_quality_install		\
+#	material_quality_install	\
+#	material_install		\
+
 
 .PHONY: $(INSTALLS)
 
 install: $(INSTALLS)
+
+fix_install:
+	@cp -fv definitions/ultimaker2.def.json "$(APPPATH)/definitions/"
+
+
+definition_install:
+	@shopt -s nullglob; cd definitions && \
+	for FILE in *.json ; do \
+	  cp -fv "$${FILE}" "$(CFGPATH)/definitions/$${FILE}" ; \
+	done
+
+variant_install:
+	@shopt -s nullglob; cd variants && \
+	for FILE in *.cfg ; do \
+	  cp -fv "$${FILE}" "$(CFGPATH)/variants/$${FILE}" ; \
+	done
+
+extruder_install:
+	@shopt -s nullglob; cd extruders && \
+	for FILE in *.json ; do \
+	  cp -fv "$${FILE}" "$(CFGPATH)/extruders/$${FILE}" ; \
+	done
+
+setting_install:
+	@shopt -s nullglob; cd settings && \
+	for FILE in *.cfg ; do \
+	  cp -fv "$${FILE}" "$(CFGPATH)/setting_visibility/$${FILE}" ; \
+	done
 
 material_install:
 	@shopt -s nullglob; cd materials && \
@@ -71,21 +106,19 @@ material_install:
 	  cp -fv "$${FILE}" "$(CFGPATH)/materials/$${FILE}" ; \
 	done
 
-quality_install:
+material_quality_install:
 	@shopt -s nullglob; cd quality && \
 	for FILE in *.cfg ; do \
 	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
 	done
 
-profile_install:
-	@shopt -s nullglob; cd profiles && \
+machine_quality_install:
+	@shopt -s nullglob; cd quality/ultimaker2_dual_left && \
 	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/quality_changes/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
 	done
-
-setting_install:
-	@shopt -s nullglob; cd settings && \
+	@shopt -s nullglob; cd quality/ultimaker2_dual_right && \
 	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/setting_visibility/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
 	done
 
