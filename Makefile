@@ -113,12 +113,8 @@ material_quality_install:
 	done
 
 machine_quality_install:
-	@shopt -s nullglob; cd quality/ultimaker2_dual_left && \
-	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
-	done
-	@shopt -s nullglob; cd quality/ultimaker2_dual_right && \
-	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
+	@shopt -s nullglob; cd quality && \
+	for DIR in ultimaker2_* ; do \
+	  cp -afv "$${DIR}" "$(CFGPATH)/quality/$${DIR}" ; \
 	done
 
