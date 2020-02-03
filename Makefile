@@ -3,13 +3,16 @@
 ##
 
 # Full version
-VERSION ?= 4.3.0
+VERSION := 4.4.1
 
 # Major version
-MAJOR ?= 4.3
+MAJOR := 4.4
+
+# Setting version
+SETTING_VERSION := 10
 
 # Application location
-APPPATH ?= /Applications/Ultimaker Cura 4.3.app/Contents/Resources/resources
+APPPATH ?= /Applications/Ultimaker Cura $(VERSION).app/Contents/Resources/resources
 
 # Config files
 CFGPATH ?= $(HOME)/Library/Application Support/cura/$(MAJOR)
@@ -30,91 +33,65 @@ CFG_DIRS := \
 
 ## Rules
 
-.PHONY: all diff cfgdiff appdiff
+.PHONY: all
 
 all: # or nothing
 	@echo "Nothing to do."
 
 
-diff: appdiff cfgdiff
-
-appdiff:
-	@shopt -s nullglob; \
-	for DIR in $(APP_DIRS) ; do \
-	  for FILE in $${DIR}/* ; do \
-	    diff -u "$${FILE}" "$(APPPATH)/$${FILE}" ; \
-	  done ; \
-	done
-
-cfgdiff:
-	@shopt -s nullglob; \
-	for DIR in $(CFG_DIRS) ; do \
-	  for FILE in $${DIR}/* ; do \
-	    diff -u "$${FILE}" "$(CFGPATH)/$${FILE}" ; \
-	  done ; \
-	done
-
-
 ## Install rules
 
 INSTALLS := \
-	fix_install			\
+	ultimaker_install		\
 	definition_install		\
 	variant_install			\
 	extruder_install		\
 	setting_install			\
-	machine_quality_install		\
-#	material_quality_install	\
 #	material_install		\
+#	material_quality_install	\
 
 
 .PHONY: $(INSTALLS)
 
 install: $(INSTALLS)
 
-fix_install:
+ultimaker_install:
 	@cp -fv definitions/ultimaker2.def.json "$(APPPATH)/definitions/"
-
 
 definition_install:
 	@shopt -s nullglob; cd definitions && \
 	for FILE in *.json ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/definitions/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(APPPATH)/definitions/$${FILE}" ; \
 	done
 
 variant_install:
 	@shopt -s nullglob; cd variants && \
 	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/variants/$${FILE}" ; \
+	  echo "variants/$${FILE} -> $(APPPATH)/variants/$${FILE}" ; \
+	  cat "$${FILE}" | sed 's|%{SETTING_VERSION}|$(SETTING_VERSION)|g' > "$(APPPATH)/variants/$${FILE}" ; \
 	done
 
 extruder_install:
 	@shopt -s nullglob; cd extruders && \
 	for FILE in *.json ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/extruders/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(APPPATH)/extruders/$${FILE}" ; \
 	done
 
 setting_install:
 	@shopt -s nullglob; cd settings && \
 	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/setting_visibility/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(APPPATH)/setting_visibility/$${FILE}" ; \
 	done
 
 material_install:
 	@shopt -s nullglob; cd materials && \
 	for FILE in *.fdm_material ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/materials/$${FILE}" ; \
+	  cp -fv "$${FILE}" "$(APPPATH)/materials/$${FILE}" ; \
 	done
 
 material_quality_install:
 	@shopt -s nullglob; cd quality && \
 	for FILE in *.cfg ; do \
-	  cp -fv "$${FILE}" "$(CFGPATH)/quality/$${FILE}" ; \
-	done
-
-machine_quality_install:
-	@shopt -s nullglob; cd quality && \
-	for DIR in ultimaker2_* ; do \
-	  cp -afv "$${DIR}" "$(CFGPATH)/quality/$${DIR}" ; \
+	  cat "$${FILE}" | sed 's|%{SETTING_VERSION}|$(SETTING_VERSION)|g' > "$(APPPATH)/quality/$${FILE}" ; \
 	done
 
