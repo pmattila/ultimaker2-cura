@@ -1,27 +1,26 @@
 {
     "version": 2,
-    "name": "Ultimaker 2 Dual/Right",
-    "inherits": "ultimaker2",
+    "name": "Ultimaker 2 Dual/Left+",
+    "inherits": "ultimaker2_plus",
     "metadata": {
         "author": "Ultimaker",
         "manufacturer": "Ultimaker B.V.",
         "weight": 5,
         "file_formats": "text/x-gcode",
         "platform": "ultimaker2_platform.obj",
-        "platform_texture": "Ultimaker2backplate.png",
-        "platform_offset": [-9, 0, 0],
+        "platform_texture": "Ultimaker2Plusbackplate.png",
+        "platform_offset": [9, 0, 0],
         "variants_name": "Nozzle Size",
         "preferred_variant_name": "0.4 mm",
         "preferred_quality_type": "normal",
+        "quality_definition": "ultimaker2_plus",
         "has_variants": true,
         "has_materials": true,
-        "has_machine_quality": false,
-        "has_machine_materials": false,
-        "has variant_materials": false,
+        "has_machine_quality": true,
         "exclude_materials": [ "structur3d_dap100silicone" ],
         "machine_extruder_trains":
         {
-            "0": "ultimaker2_dual_right_extruder_0"
+            "0": "ultimaker2_plus_dual_left_extruder_0"
         },
 	"first_start_actions": [],
         "supported_actions": [],
@@ -29,7 +28,7 @@
     },
 
     "overrides": {
-        "machine_name": { "default_value": "Ultimaker 2 Dual/Right" },
+        "machine_name": { "default_value": "Ultimaker 2 Dual/Left" },
         "machine_width": { "default_value": 220 },
         "machine_depth": { "default_value": 220 },
         "machine_height": { "default_value": 210 },
@@ -39,16 +38,16 @@
         "gantry_height": { "value": "55" },
         "machine_head_with_fans_polygon": {
             "default_value": [
-                [ -64, 14 ],
-                [ -64, -34 ],
-                [ 44, 14 ],
-                [ 44, -34 ]
+                [ -44, 14 ],
+                [ -44, -34 ],
+                [ 64, 14 ],
+                [ 64, -34 ]
             ]
         },
         "machine_gcode_flavor": { "default_value": "Marlin" },
-        "machine_start_gcode": { "default_value": "T1\nM190 S{material_bed_temperature_layer_0}\nM109 S{material_print_temperature_layer_0}\nG21\nG90\nG28\nM83\nM220 S100\nM221 S100\nG1 F2400 Z25.4\nG1 F4800 X0 Y0\nG1 F90 E20 Y20\nG1 F45 E22 Y40\nG1 F4000 Y60 Z0.5\nG1 F4000 Y160 Z0.1\nM82" },
+        "machine_start_gcode": { "default_value": "T0\nM190 S{material_bed_temperature_layer_0}\nM109 S{material_print_temperature_layer_0}\nG21\nG90\nG28\nM83\nM220 S100\nM221 S100\nG1 F2400 Z25.4\nG1 F4800 X0 Y0\nG1 F90 E20 Y20\nG1 F45 E22 Y40\nG1 F4000 Y60 Z0.5\nG1 F4000 Y160 Z0.1\nM82" },
         "machine_end_gcode": { "default_value": "M82\nG90\nG1 F4800 X110 Y40\nM84\nM107\nM104 T0 S0\nM104 T1 S0\nM140 S0" },
-	"material_diameter": { "default_value": 1.75 },
+	"material_diameter": { "default_value": 2.85 },
 	"material_flow_layer_0": { "default_value": 110 }
     }
 }

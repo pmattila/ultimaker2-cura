@@ -13,10 +13,11 @@
         "variants_name": "Nozzle Size",
         "preferred_variant_name": "0.4 mm",
         "preferred_quality_type": "normal",
-        "quality_definition": "ultimaker2_plus",
         "has_variants": true,
         "has_materials": true,
-        "has_machine_quality": true,
+        "has_machine_quality": false,
+        "has_machine_materials": false,
+        "has variant_materials": false,
         "exclude_materials": [ "structur3d_dap100silicone" ],
         "machine_extruder_trains":
         {
@@ -48,8 +49,6 @@
         "machine_start_gcode": { "default_value": "T0\nM190 S{material_bed_temperature_layer_0}\nM109 S{material_print_temperature_layer_0}\nG21\nG90\nG28\nM83\nM220 S100\nM221 S100\nG1 F2400 Z25.4\nG1 F4800 X0 Y0\nG1 F90 E20 Y20\nG1 F45 E22 Y40\nG1 F4000 Y60 Z0.5\nG1 F4000 Y160 Z0.1\nM82" },
         "machine_end_gcode": { "default_value": "M82\nG90\nG1 F4800 X110 Y40\nM84\nM107\nM104 T0 S0\nM104 T1 S0\nM140 S0" },
 	"material_diameter": { "default_value": 2.85 },
-	"material_flow_layer_0": { "default_value": 110 },
-        "layer_height_0": { "value": "round(machine_nozzle_size / 4.0, 2)" },
-        "line_width": { "value": "round(machine_nozzle_size * 0.8, 3)" }
+	"material_flow_layer_0": { "default_value": 110 }
     }
 }
