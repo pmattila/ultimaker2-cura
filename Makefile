@@ -3,13 +3,13 @@
 ##
 
 # Full version
-VERSION := 4.5.0
+VERSION := 4.8.0
 
 # Major version
-MAJOR := 4.5
+MAJOR := 4.8
 
 # Setting version
-SETTING_VERSION := 11
+SETTING_VERSION := 16
 
 # Application location
 APPPATH ?= /Applications/Ultimaker Cura $(VERSION).app/Contents/Resources/resources
