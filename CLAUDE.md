@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Custom Ultimaker Cura (macOS, currently 4.13.1) resource files for an Ultimaker 2 / 2+ modified into "Dual/Left" and "Dual/Right" single-extruder machine profiles, plus custom setting-visibility presets and third-party material profiles. There is no code to build or test. Everything is JSON/INI data that gets copied into the Cura app bundle.
+Custom Ultimaker Cura (macOS, currently 5.12.0) resource files for an Ultimaker 2 / 2+ modified into "Dual/Left" and "Dual/Right" single-extruder machine profiles, plus custom setting-visibility presets and third-party material profiles. There is no code to build or test. Everything is JSON/INI data that gets copied into the Cura app bundle.
 
 ## Commands
 
@@ -12,7 +12,7 @@ Custom Ultimaker Cura (macOS, currently 4.13.1) resource files for an Ultimaker 
 make install             # copy everything into the Cura.app bundle
 make variant_install     # a single target: ultimaker_install, definition_install,
                          # variant_install, extruder_install, setting_install
-make install APPPATH="/Applications/Ultimaker Cura X.Y.Z.app"   # override app location
+make install APPPATH="/Applications/Other Cura.app"   # override app location
 ```
 
 `make` with no target does nothing. `material_install` and `material_quality_install` are commented out of `INSTALLS`. There is no `quality/` directory, so `material_quality_install` would fail. Run `material_install` by hand if you need it. Cura has to be restarted to pick up changes.
@@ -27,7 +27,7 @@ make install APPPATH="/Applications/Ultimaker Cura X.Y.Z.app"   # override app l
 | `settings/*.cfg` | `setting_visibility/` | Only `.cfg` files are installed; the `.exp` files are not |
 | `materials/*.fdm_material` | `materials/` | Not installed by default |
 
-`RESPATH` is the Cura.app `Contents/Resources/resources` directory. `CFGPATH` (the user config dir) is defined but not used by any rule.
+`RESPATH` is the Cura.app `Contents/Resources/share/cura/resources` directory (it was `Contents/Resources/resources` before Cura 5). `CFGPATH` (the user config dir) is defined but not used by any rule.
 
 ## Architecture
 
@@ -39,6 +39,6 @@ make install APPPATH="/Applications/Ultimaker Cura X.Y.Z.app"   # override app l
 
 Past commits ("Modified for Cura 4.x") follow the same steps:
 
-1. Update `VERSION`, `MAJOR` and `SETTING_VERSION` in the Makefile. `SETTING_VERSION` has to match the new Cura's `setting_version`, or Cura will reject the variants.
+1. Update `MAJOR` and `SETTING_VERSION` in the Makefile. `SETTING_VERSION` has to match the new Cura's `setting_version`, or Cura will reject the variants.
 2. Replace `ultimaker2.def.json.orig` with the new stock `ultimaker2.def.json` from the app bundle.
 3. Re-apply the local changes to `ultimaker2.def.json`. Diff it against the old `.orig` to see what those changes are.

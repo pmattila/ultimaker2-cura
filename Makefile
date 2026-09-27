@@ -2,20 +2,17 @@
 ## Makefile for CURA configuration
 ##
 
-# Full version
-VERSION := 4.13.1
-
 # Major version
-MAJOR := 4.13
+MAJOR := 5.12
 
 # Setting version
-SETTING_VERSION := 19
+SETTING_VERSION := 26
 
 # Application location
-APPPATH ?= /Applications/Ultimaker Cura $(VERSION).app
+APPPATH ?= /Applications/UltiMaker Cura.app
 
 # Resource location
-RESPATH ?= $(APPPATH)/Contents/Resources/resources
+RESPATH ?= $(APPPATH)/Contents/Resources/share/cura/resources
 
 # Config files
 CFGPATH ?= $(HOME)/Library/Application Support/cura/$(MAJOR)
